@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Bracket from "./bracket";
+import BracketNew from "./bracketnew";
 
 function App() {
   return (
     <div className="App">
-      <Bracket />
+      <BracketNew />
     </div>
   );
 }

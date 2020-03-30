@@ -1,9 +1,27 @@
+.bracket{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 20px;
+}
+.bracketNode{
+  background-color: beige;
+  width: 140px;
+  height: 20px;
+  border-width: 0.5px;
+  border-style: solid;
+  cursor: pointer;
+}
+
 .column{
   background-color: aqua;
   display: flex;
   flex-direction: column;
 }
 .columns{
+  display: flex;
+  flex-direction: row;
+}
+.columnContainer{
   display: flex;
   flex-direction: row;
 }
