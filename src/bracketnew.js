@@ -37,8 +37,9 @@ var round = 0, expectedUserNum = 0, mustAutoWinnerCount = 0;
 class BracketNew extends Component {
 
     state = {
+        name: "",
         matches: {
-            // 11: { winner: 1, loser: 2, scores: { r1: { 1: 16, 2: 10 } }, bo: 1, streams: {}, matchDate: null, statLink: null }
+            // rrr: { winner: 1, loser: 2, scores: { r1: { 1: 16, 2: 10 } }, bo: 1, streams: {}, matchDate: null, statLink: null }
         },
     }
 
@@ -53,11 +54,28 @@ class BracketNew extends Component {
         mustAutoWinnerCount = expectedUserNum - userCount;
         const autoWinnersMatches = await this.setAutoWinnerMatches();
         const restMatches = await this.setMatches();
-        // console.log("autoWinnersMatches ", autoWinnersMatches);
-        // console.log("restMatches ", restMatches);
+        console.log("autoWinnersMatches ", autoWinnersMatches);
+        console.log("restMatches ", restMatches);
+
+        // this.setState({
+        //     matches: { ...autoWinnersMatches, ...restMatches }
+        // }, () => {
+        //     console.log(this.state.matches);
+        // });
+        // const allMatch = { ...autoWinnersMatches, ...restMatches };
+
         this.setState({ matches: { ...autoWinnersMatches, ...restMatches } }, () => {
-            if (mustAutoWinnerCount) this.setNextRound();
+            setTimeout(() => {
+                // console.log(this.state);
+                console.log("inner ", this.state.matches);
+            }, 5000);
+            // if (mustAutoWinnerCount) this.setNextRound();
         });
+        // console.log("outer ", this.state.matches);
+        setTimeout(() => {
+            // console.log(this.state);
+            console.log("outer ", this.state.matches);
+        }, 5000);
     }
 
     getbracketRounds(totalNum) {
@@ -121,10 +139,13 @@ class BracketNew extends Component {
     }
 
     setNextRound() {
-        // let newMatches = {};
+        const { matches } = this.state;
         for (let i = 0; i < mustAutoWinnerCount; i++) {
-            const user = users[userKeys[i]];
+            // const user = users[userKeys[i]];
             const matchLabel = parseInt("1" + (i + 1))  //1 first round i+1 match sequence
+            console.log("matchLabel ", matchLabel);
+            console.log("matches ", matches);
+            console.log("matches[matchLabel] ", matches[matchLabel]);
 
             // let match = this.getMatch(user.id, null);
             // newMatches[matchLabel] = match;
